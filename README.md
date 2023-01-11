@@ -41,3 +41,9 @@ mkdir /home/httpd/html/custom
 echo "function FindProxyForURL(url, host) {return "PROXY [ip_do_endia]:8080";}" > /home/httpd/html/custom/wpad.dat
 /etc/init.d/httpd restart
 ```
+
+## Links adicionais
+
+- https://help.endian.com/hc/en-us/articles/360011796214-How-to-use-WPAD-Web-Proxy-Auto-Discovery-Protocol-
+- https://help.endian.com/hc/en-us/articles/224528707-How-to-customize-Endian-PAC-Proxy-Auto-Configuration-file
+    - Exemplos de código para o arquivo wpad.dat
