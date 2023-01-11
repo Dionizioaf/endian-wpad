@@ -1,0 +1,14 @@
+function FindProxyForURL(url, host) {
+
+    if (
+        (dnsDomainIs(host, ".local.com"))
+    ) {
+        return "DIRECT";
+    } else {
+        return "PROXY [ip_do endiad]:8080";
+    }
+
+}
+
+
+function FindProxyForURL(url, host) {return "PROXY 166.126.235.185:8080";}
