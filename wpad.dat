@@ -1,3 +1,4 @@
+-- EXAMPLE 1
 function FindProxyForURL(url, host) {
 
     if (
@@ -10,5 +11,33 @@ function FindProxyForURL(url, host) {
 
 }
 
+-- EXAMPLE 2
+function FindProxyForURL(url, host) {return "PROXY 200.102.3.45:8080";}
 
-function FindProxyForURL(url, host) {return "PROXY 166.126.235.185:8080";}
+-- EXAMPLE 3
+function FindProxyForURL(url, host) {
+    // Logic 1: If the host is in the local network, return "DIRECT"
+    if (isInNet(host, "10.0.0.0", "255.0.0.0") || isInNet(host, "172.16.0.0", "255.240.0.0") || isInNet(host, "192.168.0.0", "255.255.0.0")) {
+        return "DIRECT";
+    }
+    
+    // Logic 2: If the host is in a specific domain, return "PROXY proxy.example.com:8080"
+    if (shExpMatch(host, "*.example.com")) {
+        return "PROXY proxy.example.com:8080";
+    }
+    
+    // Logic 3: If the host is in a specific IP range, return "PROXY proxy2.example.com:8080"
+    if (isInNet(host, "100.64.0.0", "255.192.0.0")) {
+        return "PROXY proxy2.example.com:8080";
+    }
+    // Logic 4: If the host is in a specific IP range, return "PROXY proxy3.example.com:8080"
+    if (isInNet(host, "100.64.0.0", "255.192.0.0")) {
+        return "PROXY proxy3.example.com:8080";
+    }
+    // Logic 5: If the host is in a specific IP range, return "PROXY proxy4.example.com:8080"
+    if (isInNet(host, "100.64.0.0", "255.192.0.0")) {
+        return "PROXY proxy4.example.com:8080";
+    }
+    // If none of the above logic is true, return "DIRECT"
+    return "DIRECT";
+}
